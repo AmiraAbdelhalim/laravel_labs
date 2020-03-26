@@ -5,21 +5,21 @@
     @csrf
     <div class="form-group">
       <label >Title</label>
-      <input name="title" type="text" class="form-control" aria-describedby="emailHelp">
+      <input name="title" type="text" class="form-control" aria-describedby="emailHelp" required value="{{$post->title}}">
     </div>
     <div class="form-group">
       <label for="exampleInputPassword1">Description</label>
       <textarea name="description" class="form-control">
-
+        {{$post->description}}
       </textarea>
     </div>
 
     <div class="form-group">
       <label for="exampleInputPassword1">Users</label>
       <select name="user_id" class="form-control">
-        @foreach($users as $user)  
-          <option value="{{$user->id}}">{{$user->name}}</option>
-        @endforeach
+       
+          <option value="{{$post->user->id}}">{{$post->user->name}}</option>
+       
         </select>
     </div>
 
