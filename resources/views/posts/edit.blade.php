@@ -1,8 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<form method="POST" action="{{route('posts.store')}}">
+<form method="POST" action="{{route('posts.update', ['post'=>$post->id])}}">
     @csrf
+    @method('PUT')
+    {{--method_field("PUT")--}}
     <div class="form-group">
       <label >Title</label>
       <input name="title" type="text" class="form-control" aria-describedby="emailHelp" required value="{{$post->title}}">

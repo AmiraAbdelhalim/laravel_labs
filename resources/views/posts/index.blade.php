@@ -25,8 +25,8 @@
                   <td>{{ $post->created_at }}</td>
 
                 <td><a href="{{route('posts.show',['post' => $post->id])}}" class="btn btn-primary btn-sm">View</a>
-                <a href="{{route('posts.edit',['post' => $post->id])}}" class="btn btn-danger btn-sm">Edit </a>
-                <a href="{{route('posts.show',['post' => $post->id])}}" class="btn btn-primary btn-sm">Delete</a></td>
+                <a href="{{route('posts.edit',['post' => $post->id])}}" class="btn btn-info btn-sm">Edit </a>
+                <a href="{{route('posts.destroy',['post' => $post->id])}}" class="btn btn-danger btn-sm">Delete</a></td>
 
 
                 </tr>
