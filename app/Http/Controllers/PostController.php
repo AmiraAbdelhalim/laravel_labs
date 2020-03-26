@@ -7,7 +7,6 @@ use App\Post;
 use App\User;
 
 
-
 class PostController extends Controller
 {
     //

@@ -22,7 +22,7 @@
                   <td>{{ $post->description }}</td>
 
                   <td>{{ $post->user ? $post->user->name : 'not exist'}}</td>
-                  <td>{{ $post->created_at }}</td>
+                  <td>{{ $post->created_at->format('Y-m-d') }}</td>
 
                 <td><a href="{{route('posts.show',['post' => $post->id])}}" class="btn btn-primary btn-sm">View</a>
                 <a href="{{route('posts.edit',['post' => $post->id])}}" class="btn btn-info btn-sm">Edit </a>

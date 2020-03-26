@@ -14,7 +14,7 @@
             <h5 class="card-title">User Info</h5>
             <h5 class="card-text">User: {{$post->user ? $post->user->name : 'not exist'}}</h5>
             <p class="card-text">Email: {{$post->user ? $post->user->email : 'not exist'}}</p>
-            <p class="card-text">Created At: {{$post->created_at}}</p>
+            <p class="card-text">Created At: {{$post->created_at->format('l j F Y, h:m:s a')}}</p>
 
         </div>
     </div>
