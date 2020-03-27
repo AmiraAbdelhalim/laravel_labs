@@ -30,3 +30,6 @@ Route::get("/posts/{post}/edit", "PostController@edit")->name('posts.edit');
 Route::put('/posts/{post}','PostController@update')->name('posts.update');
 
 Route::get('/post/{post}/delete','PostController@destroy')->name('posts.destroy');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
