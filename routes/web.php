@@ -16,20 +16,23 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::group(['middleware' => 'auth'], function(){
+    Route::get("/posts","PostController@index")->name('posts.index');
 
-Route::get("/posts","PostController@index")->name('posts.index');
+    Route::get('/posts/create', "PostController@create")->name('posts.create');
 
-Route::get('/posts/create', "PostController@create")->name('posts.create');
+    Route::post('/posts', 'PostController@store')->name('posts.store');
 
-Route::post('/posts', 'PostController@store')->name('posts.store');
+    Route::get("/posts/{post}", "PostController@show")->name('posts.show');
 
-Route::get("/posts/{post}", "PostController@show")->name('posts.show');
+    Route::get("/posts/{post}/edit", "PostController@edit")->name('posts.edit');
 
-Route::get("/posts/{post}/edit", "PostController@edit")->name('posts.edit');
+    Route::put('/posts/{post}','PostController@update')->name('posts.update');
 
-Route::put('/posts/{post}','PostController@update')->name('posts.update');
-
-Route::get('/post/{post}/delete','PostController@destroy')->name('posts.destroy');
+    Route::get('/post/{post}/delete','PostController@destroy')->name('posts.destroy');
+    
+    
+});    
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
