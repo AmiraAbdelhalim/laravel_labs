@@ -29,7 +29,7 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::put('/posts/{post}','PostController@update')->name('posts.update');
 
-    Route::get('/post/{post}/delete','PostController@destroy')->name('posts.destroy');
+    Route::delete('/post/{post}','PostController@destroy')->name('posts.destroy');
     
     
 });    

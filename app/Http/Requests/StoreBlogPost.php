@@ -26,15 +26,20 @@ class StoreBlogPost extends FormRequest
         return [
             //
             'title' => 'required|unique:posts|min:3',
-            'description' => 'required | min:10'
+            'description' => 'required | min:10',
+            'user_id'=>'exists:users,id'
         ];
     }
 
     public function messages()
     {
         return [
-                'title.min' => 'Please the title has minimum of 3 chars',
-                'title.required' => 'Please enter the title field'
+                'title.min' => 'too short title buddy',
+                'title.unique' => 'title already exists, try another one ;)',
+                'title.required' => 'nothing is identified without a name so please fill the title',
+                'description.required' => 'make your idea clear and add a description',
+                'description.min' => 'too short buddy make your idea clear and increase your length of the description'
+
             ];
     }
 }

@@ -7,6 +7,7 @@ use App\Post;
 use App\User;
 use App\Http\Requests\StoreBlogPost;
 
+
 class PostController extends Controller
 {
     //
@@ -42,6 +43,7 @@ class PostController extends Controller
     {
        
         Post::create([
+            
             'title' => $request->title,
             'description'=> $request->description,
             'user_id'=> $request->user_id
@@ -83,6 +85,7 @@ class PostController extends Controller
     {
         
         $post_id = Post::find($post);
+        // dd($post_id);
         $post_id->delete();
         return redirect()->route('posts.index');
     }

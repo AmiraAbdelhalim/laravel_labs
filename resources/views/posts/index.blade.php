@@ -8,6 +8,7 @@
                 <tr>
                   <th scope="col">ID</th>
                   <th scope="col">Title</th>
+                  <th scope="col">Slug</th>
                   <th scope="col">Description</th>
                   <th scope="col">User Name</th>
                   <th scope="col">Created At</th>
@@ -19,6 +20,7 @@
                 <tr>
                 <th scope="row">{{ $post->id }}</th>
                   <td>{{ $post->title }}</td>
+                  <td>{{ $post->slug }}</td>
                   <td>{{ $post->description }}</td>
 
                   <td>{{ $post->user ? $post->user->name : 'not exist'}}</td>
@@ -26,7 +28,13 @@
 
                 <td><a href="{{route('posts.show',['post' => $post->id])}}" class="btn btn-primary btn-sm">View</a>
                 <a href="{{route('posts.edit',['post' => $post->id])}}" class="btn btn-info btn-sm">Edit </a>
-                <a href="{{route('posts.destroy',['post' => $post->id])}}" class="btn btn-danger btn-sm">Delete</a></td>
+                <!-- form for delete -->
+                <form id="delete{{$post->id}}" method="POST" action="{{route('posts.destroy', ['post'=>$post->id])}}">
+                @csrf
+                {{method_field("DELETE")}}
+                      <button type="button" class="btn btn-danger" onclick="deleteConfirmation()">Delete</button>
+                </form>
+                </td>
 
 
                 </tr>
@@ -36,5 +44,16 @@
             {{$posts->links()}}
       </div>
 
-
+      <script>
+function deleteConfirmation(){
+    var confirm_delete=confirm("Do you want to DELETE post?");
+    console.log(confirm_delete);
+    if (confirm_delete== true){
+        document.getElementById("delete{{$post->id}}").submit();
+        
+        // return true;
+    }
+   
+}
+</script>
 @endsection
