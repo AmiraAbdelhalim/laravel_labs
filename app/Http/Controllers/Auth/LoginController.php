@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Socialite;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Google_Client;
+
 
 class LoginController extends Controller
 {
@@ -90,5 +92,36 @@ class LoginController extends Controller
             ]);
         }
         Auth::login($user, true);
+    }
+
+
+    /**
+    * Redirect the user to the Google authentication page.
+    *
+    * @return \Illuminate\Http\Response
+    */
+    public function redirectToProviderGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function handleProviderCallbackGoogle()
+    {
+        dd($user = Socialite::driver('google')->user());
+        
+        $this->loginOrCreateAccount($user, 'google');
+
+        // Set token for the Google API PHP Client
+        $google_client_token = [
+            'access_token' => $user->token,
+            'refresh_token' => $user->refreshToken,
+            'expires_in' => $user->expiresIn
+        ];
+
+        $client = new Google_Client();
+        $client->setApplicationName("Laravel");
+        $client->setDeveloperKey(env('GOOGLE_SERVER_KEY'));
+        $client->setAccessToken(json_encode($google_client_token));
+            
     }
 }
