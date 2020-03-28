@@ -3,8 +3,11 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\User;
+use App\Post;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+
+
 
 /*
 |--------------------------------------------------------------------------
