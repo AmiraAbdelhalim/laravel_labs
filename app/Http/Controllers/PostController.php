@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\User;
 use App\Http\Requests\StoreBlogPost;
-
+use App\Http\Requests\UpdateBlogPost;
 
 class PostController extends Controller
 {
@@ -65,10 +65,8 @@ class PostController extends Controller
 
     
 
-    public function update(Request $request, $post)
+    public function update(UpdateBlogPost $request, $post)
     {
-        ////////dd($post);
-        
         
         Post::find($post)->update([
             'title'=>$request->title,
